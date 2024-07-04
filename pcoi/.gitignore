@@ -1,0 +1,6 @@
+misc
+backup
+import
+.terraform
+.terraform.lock.hcl
+terraform.tfstate

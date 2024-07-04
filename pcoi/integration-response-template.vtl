@@ -1,0 +1,6 @@
+#set($inputRoot = $input.path('$'))
+#set($statusCode = $context.integrationStatus)
+#set($context.responseOverride.status = $statusCode)
+#set($logMessage = "Response payload: " + $inputRoot)
+$util.log("INFO", $logMessage)
+$input.json('$')
