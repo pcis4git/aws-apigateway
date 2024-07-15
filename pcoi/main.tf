@@ -49,7 +49,7 @@ resource "aws_api_gateway_integration" "integration_consent_post" {
   }
 
   request_templates = { 
-    "application/json" = file("${path.module}/../integration-request-template.vtl")
+    "application/json" = file("${path.module}/../common/integration-request-template.vtl")
   }
 }
 
