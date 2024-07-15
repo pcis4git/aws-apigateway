@@ -1,16 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-}
-
-provider "aws" {
-  region = "ca-central-1"
-}
-
 resource "aws_api_gateway_rest_api" "pcoi_api" {
   name        = "pcoi-api"
   description = "This is an terraform API Gateway"
@@ -54,7 +41,7 @@ resource "aws_api_gateway_integration" "integration_consent_post" {
   integration_http_method = "POST"
   uri                     = var.backbone_url
   request_parameters = {
-    "integration.request.header.x-oag-apiname" = "'pcoi'"
+    "integration.request.header.x-oag-apiname" = "'aws-poc'"
     "integration.request.header.x-oag-sign-token-enabled" = "'true'"
     "integration.request.header.x-oag-audit-enabled" = "'true'"
     "integration.request.header.x-oag-audit-ignore-failure" = "'true'"
@@ -62,7 +49,7 @@ resource "aws_api_gateway_integration" "integration_consent_post" {
   }
 
   request_templates = { 
-    "application/json" = file("${path.module}/integration-request-template.vtl")
+    "application/json" = file("${path.module}/../integration-request-template.vtl")
   }
 }
 
